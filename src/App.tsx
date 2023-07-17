@@ -5,7 +5,7 @@ const port = Browser.runtime.connect({ name: "background" });
 port.onMessage.addListener(function (msg) {
   console.log(msg, "msg from background");
 });
-const App = () => {
+const UI = () => {
   const postMessage = async () => {
     port.postMessage({ question: "Hi Background , from UI" });
   };
@@ -21,4 +21,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default UI;

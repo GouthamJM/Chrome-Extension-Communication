@@ -1,4 +1,4 @@
-console.log("injected to injector");
+console.log("injector injected");
 const ping = () => {
   window.postMessage({ type: "FROM_INJECTOR", question: "Ping" });
 };

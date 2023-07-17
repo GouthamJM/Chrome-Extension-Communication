@@ -20,14 +20,21 @@ const injectScript = (filePath: string) => {
 injectScript(Browser.runtime.getURL("injector.js"));
 
 const port = Browser.runtime.connect({ name: "background" });
-port.postMessage({ question: "Hi Background" });
+
+setTimeout(() => {
+  port.postMessage({ question: "Hi Background" });
+}, 1000);
 
 port.onMessage.addListener(function (msg) {
   console.log(msg, "msg content");
   if (msg.answer === "Hi Content")
-    port.postMessage({ question: "How are you Background" });
+    setTimeout(() => {
+      port.postMessage({ question: "How are you Background" });
+    }, 1000);
   else if (msg.answer === "I am good , How are you Content ? ")
-    port.postMessage({ question: "I am good too" });
+    setTimeout(() => {
+      port.postMessage({ question: "I am good too" });
+    }, 1000);
 });
 
 window.addEventListener("message", (event) => {
